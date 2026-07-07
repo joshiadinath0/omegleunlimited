@@ -282,6 +282,41 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SEO Section */}
+      <section className="w-full bg-background py-16 px-6 border-t border-border">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-extrabold mb-4">The Best Omegle Alternative in {new Date().getFullYear()}</h2>
+            <p className="text-muted-foreground text-base sm:text-lg">
+              Looking for a safe, free, and unrestricted <strong className="text-foreground">Omegle alternative</strong> or <strong className="text-foreground">OmeTV alternative</strong>? You&apos;re in the right place.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-muted/20 border border-border rounded-2xl p-6">
+              <h3 className="text-xl font-bold mb-3 text-primary">How to get an Omegle Unban?</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                If you&apos;re tired of searching for an <strong>omegle unban</strong> or figuring out how to bypass unfair restrictions, OmegleUnlimited is the perfect solution. We don&apos;t track your IP address or require registration, meaning there are absolutely no bans. Start a fresh <strong>stranger chat</strong> instantly without ever worrying about being blocked.
+              </p>
+            </div>
+            
+            <div className="bg-muted/20 border border-border rounded-2xl p-6">
+              <h3 className="text-xl font-bold mb-3 text-primary">OmeTV Alternative & Unban</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                OmeTV is known for strict rules and unexpected account bans. If you need an <strong>ometv unban</strong> or just want a better <strong>ometv alternative</strong>, our platform offers a limitless, anonymous environment. Talk to strangers, use our advanced gender and country filters, and enjoy a completely unrestricted video chat experience.
+              </p>
+            </div>
+          </div>
+          
+          <div className="mt-8 p-6 bg-primary/5 border border-primary/20 rounded-2xl text-center">
+            <h3 className="text-lg font-bold mb-2">Why choose OmegleUnlimited for Stranger Chat?</h3>
+            <p className="text-muted-foreground text-sm">
+              As the internet&apos;s premier random video chat platform, we combine the classic thrill of meeting random people with modern security and a gorgeous interface. Whether you want to make new friends, practice a language, or just kill time, OmegleUnlimited is the ultimate chat network.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Ad: Below Fold */}
       <div className="w-full bg-background py-8 flex items-center justify-center border-t border-border px-4">
         <div className="w-[728px] max-w-full h-[90px] bg-muted/20 border border-border border-dashed rounded-lg flex items-center justify-center text-muted-foreground text-sm font-semibold tracking-wider uppercase">
