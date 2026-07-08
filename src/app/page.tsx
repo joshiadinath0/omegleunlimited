@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Zap, ShieldCheck, Video, ShieldAlert } from "lucide-react";
 import Link from "next/link";
+import AdBanner from "@/components/AdBanner";
 
 const INTERESTS = [
   "🎮 Gaming",
@@ -130,9 +131,9 @@ export default function Home() {
       </header>
 
       {/* Ad: Top Banner */}
-      <div className="w-full bg-muted/20 border-b border-border py-4 flex items-center justify-center px-4">
-        <div className="w-[728px] max-w-full h-[90px] bg-muted/40 border border-border border-dashed rounded-lg flex items-center justify-center text-muted-foreground text-sm font-semibold tracking-wider uppercase">
-          Advertisement Placeholder
+      <div className="w-full bg-muted/20 border-b border-border py-4 flex items-center justify-center px-4 overflow-hidden">
+        <div className="w-[728px] max-w-full min-h-[90px] flex items-center justify-center">
+          <AdBanner dataAdSlot="5181155973" dataAdFormat="auto" dataFullWidthResponsive={true} className="w-full h-full" />
         </div>
       </div>
 
@@ -318,9 +319,9 @@ export default function Home() {
       </section>
 
       {/* Ad: Below Fold */}
-      <div className="w-full bg-background py-8 flex items-center justify-center border-t border-border px-4">
-        <div className="w-[728px] max-w-full h-[90px] bg-muted/20 border border-border border-dashed rounded-lg flex items-center justify-center text-muted-foreground text-sm font-semibold tracking-wider uppercase">
-          Advertisement Placeholder
+      <div className="w-full bg-background py-8 flex items-center justify-center border-t border-border px-4 overflow-hidden">
+        <div className="w-[728px] max-w-full min-h-[90px] flex items-center justify-center">
+          <AdBanner dataAdSlot="5181155973" dataAdFormat="auto" dataFullWidthResponsive={true} className="w-full h-full" />
         </div>
       </div>
 

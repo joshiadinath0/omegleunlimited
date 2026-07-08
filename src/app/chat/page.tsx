@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, SkipForward, Send, Flag, Camera, Mic, CameraOff, MicOff } from "lucide-react";
 import Link from "next/link";
+import AdBanner from "@/components/AdBanner";
 
 // Pool of 30 safe, viral/popular YouTube videos
 const VIDEOS = [
@@ -170,16 +171,18 @@ export default function ChatPage() {
       </header>
 
       {/* Top Banner Ad (Mobile + Desktop) */}
-      <div className="w-full h-12 bg-muted/20 border-b border-border flex items-center justify-center shrink-0">
-         <span className="text-[10px] text-muted-foreground uppercase tracking-widest border border-dashed border-border px-8 py-1 rounded bg-muted/40">Top Ad Banner Placeholder</span>
+      <div className="w-full min-h-[50px] bg-muted/20 border-b border-border flex items-center justify-center shrink-0 overflow-hidden">
+        <AdBanner dataAdSlot="5181155973" dataAdFormat="auto" dataFullWidthResponsive={true} className="w-full h-full" />
       </div>
 
       {/* Main Layout */}
       <div className="flex-1 flex flex-col md:flex-row overflow-hidden relative">
         
         {/* Ad: Left Vertical (Desktop) */}
-        <div className="hidden lg:flex w-[160px] border-r border-border bg-muted/10 items-center justify-center">
-          <span className="text-[10px] text-muted-foreground uppercase tracking-widest rotate-90">Advertisement</span>
+        <div className="hidden lg:flex w-[160px] border-r border-border bg-muted/10 items-center justify-center overflow-hidden">
+          <div className="w-full h-full min-h-[600px] flex items-center justify-center">
+            <AdBanner dataAdSlot="1841475529" dataAdFormat="auto" dataFullWidthResponsive={true} className="w-full h-full" />
+          </div>
         </div>
 
         {/* Video Area */}
@@ -212,8 +215,8 @@ export default function ChatPage() {
                   {" "}with similar interests...
                 </p>
                 {/* Interstitial Ad */}
-                <div className="w-[300px] h-[250px] bg-muted/30 border border-border border-dashed rounded-lg flex items-center justify-center text-muted-foreground text-sm font-semibold tracking-wider uppercase shadow-xl backdrop-blur-sm">
-                  Sponsored Ad Placeholder
+                <div className="w-[300px] h-[250px] flex items-center justify-center shadow-xl overflow-hidden bg-background/50 rounded-lg">
+                  <AdBanner dataAdSlot="5181155973" dataAdFormat="auto" dataFullWidthResponsive={true} className="w-full h-full" />
                 </div>
               </motion.div>
             )}
@@ -305,8 +308,8 @@ export default function ChatPage() {
           </div>
 
           {/* Small Feed Ad */}
-          <div className="p-2 border-t border-border bg-muted/5 flex items-center justify-center">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-widest border border-dashed border-border px-4 py-1 rounded w-full text-center bg-muted/20">Chat Feed Ad</span>
+          <div className="p-2 border-t border-border bg-muted/5 flex items-center justify-center overflow-hidden min-h-[60px]">
+            <AdBanner dataAdSlot="5181155973" dataAdFormat="auto" dataFullWidthResponsive={true} className="w-full h-full" />
           </div>
 
           {/* Chat Input */}
@@ -330,8 +333,8 @@ export default function ChatPage() {
           </form>
 
           {/* Ad: Bottom Right */}
-          <div className="h-[90px] border-t border-border bg-muted/10 flex items-center justify-center shrink-0">
-             <span className="text-[10px] text-muted-foreground uppercase tracking-widest">Advertisement</span>
+          <div className="min-h-[90px] border-t border-border bg-muted/10 flex items-center justify-center shrink-0 overflow-hidden">
+            <AdBanner dataAdSlot="5181155973" dataAdFormat="auto" dataFullWidthResponsive={true} className="w-full h-full" />
           </div>
         </div>
 
