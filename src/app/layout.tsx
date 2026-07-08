@@ -35,10 +35,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Google AdSense */}
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5660093143324976"
           crossOrigin="anonymous"
+        ></script>
+        {/* Monetag Popunder */}
+        <script 
+          src="https://5gvci.com/act/files/tag.min.js?z=11256850" 
+          data-cfasync="false" 
+          async
         ></script>
       </head>
       <body className={`${inter.className} min-h-screen antialiased bg-background text-foreground flex flex-col`}>
@@ -61,6 +68,15 @@ export default function RootLayout({
                 page_path: window.location.pathname,
               });
             `,
+          }}
+        />
+        
+        {/* Monetag In-Page Ad */}
+        <Script
+          id="monetag-in-page"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(s){s.dataset.zone='11256849',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))`,
           }}
         />
       </body>

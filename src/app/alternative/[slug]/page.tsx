@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Zap, ShieldCheck, Video } from "lucide-react";
+import AdBanner from "@/components/AdBanner";
 
 export const dynamic = "force-static";
 
@@ -40,6 +41,13 @@ export default async function AlternativePage({ params }: { params: Promise<{ sl
           Omegle<span className="text-primary">Unlimited</span>
         </Link>
       </header>
+
+      {/* Ad: Top Banner */}
+      <div className="w-full bg-muted/20 border-b border-border py-4 flex items-center justify-center px-4 overflow-hidden">
+        <div className="w-[728px] max-w-full min-h-[90px] flex items-center justify-center">
+          <AdBanner dataAdSlot="5181155973" dataAdFormat="auto" dataFullWidthResponsive={true} className="w-full h-full" />
+        </div>
+      </div>
 
       <main className="flex-1 flex flex-col items-center justify-center p-6 text-center">
         <div className="max-w-2xl bg-muted/40 border border-border backdrop-blur-xl rounded-3xl p-8 sm:p-12 shadow-2xl">

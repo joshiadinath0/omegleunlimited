@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import AdBanner from "@/components/AdBanner";
 
 export const dynamic = "force-static";
 
@@ -49,6 +50,13 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
           Omegle<span className="text-primary">Unlimited</span> Blog
         </Link>
       </header>
+
+      {/* Ad: Top Banner */}
+      <div className="w-full bg-muted/20 border-b border-border py-4 flex items-center justify-center px-4 overflow-hidden">
+        <div className="w-[728px] max-w-full min-h-[90px] flex items-center justify-center">
+          <AdBanner dataAdSlot="5181155973" dataAdFormat="auto" dataFullWidthResponsive={true} className="w-full h-full" />
+        </div>
+      </div>
 
       <main className="flex-1 max-w-3xl mx-auto w-full p-6 sm:p-12">
         <h1 className="text-3xl sm:text-5xl font-extrabold mb-6 leading-tight">{post.title}</h1>
