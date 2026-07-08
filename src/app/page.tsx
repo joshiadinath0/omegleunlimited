@@ -8,16 +8,21 @@ import Link from "next/link";
 import AdBanner from "@/components/AdBanner";
 
 const INTERESTS = [
+  "😏 Flirting",
+  "🌙 Late Night Chat",
+  "💘 Singles",
+  "❤️ Dating",
+  "🎲 Truth or Dare",
+  "👻 Snapchat",
+  "🎓 College",
+  "🌈 LGBTQ+",
   "🎮 Gaming",
-  "🎵 Music",
-  "📸 Photography",
+  "🎌 Anime",
+  "🎵 K-Pop",
+  "🎭 Roleplay",
+  "💪 Gym & Fitness",
   "😂 Memes",
-  "🎬 Movies",
-  "🌎 Travel",
-  "🤖 AI & Tech",
-  "💃 Dance",
-  "🐶 Pets",
-  "🍕 Food",
+  "🫂 Venting"
 ];
 
 const COUNTRIES = [

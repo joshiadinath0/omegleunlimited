@@ -2,19 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Users } from "lucide-react";
 import AdBanner from "@/components/AdBanner";
+import { ROOMS } from "@/lib/seo-data";
 
 export const dynamic = "force-static";
-
-const ROOMS = [
-  { slug: "anime", name: "Anime", emoji: "🎌" },
-  { slug: "gaming", name: "Gaming", emoji: "🎮" },
-  { slug: "kpop", name: "K-Pop", emoji: "🎵" },
-  { slug: "roblox", name: "Roblox", emoji: "🧱" },
-  { slug: "tiktok", name: "TikTok", emoji: "📱" },
-  { slug: "snapchat", name: "Snapchat", emoji: "👻" },
-  { slug: "bored", name: "Bored", emoji: "🥱" },
-  { slug: "movies", name: "Movies", emoji: "🍿" }
-];
 
 export async function generateStaticParams() {
   return ROOMS.map((r) => ({

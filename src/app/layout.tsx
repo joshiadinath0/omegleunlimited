@@ -8,7 +8,12 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "OmegleUnlimited – Free Random Video Chat",
   description: "Free random video chat with no bans or limits. Meet new people instantly. The ultimate Omegle alternative.",
-  keywords: ["omegle", "omegle alternative", "random video chat", "chat with strangers", "omegle unlimited"],
+  keywords: [
+    "omegle", "omegle alternative", "random video chat", "chat with strangers", "omegle unlimited",
+    "omegle unban", "ometv alternative", "free video chat", "talk to strangers", "cam to cam",
+    "chatroulette alternative", "monkey app alternative", "meet new people", "video chat no login",
+    "flirting chat", "late night chat", "singles video chat", "dating chat"
+  ],
   openGraph: {
     title: "OmegleUnlimited – Free Random Video Chat",
     description: "Free random video chat with no bans or limits. Meet new people instantly. The ultimate Omegle alternative.",

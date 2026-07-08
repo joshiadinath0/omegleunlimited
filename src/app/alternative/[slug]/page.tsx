@@ -2,17 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Zap, ShieldCheck, Video } from "lucide-react";
 import AdBanner from "@/components/AdBanner";
+import { COMPETITORS } from "@/lib/seo-data";
 
 export const dynamic = "force-static";
-
-const COMPETITORS = [
-  { slug: "ometv", name: "OmeTV" },
-  { slug: "chatroulette", name: "Chatroulette" },
-  { slug: "monkey", name: "Monkey App" },
-  { slug: "emerald-chat", name: "Emerald Chat" },
-  { slug: "omegle-web", name: "Omegle Web" },
-  { slug: "chathub", name: "ChatHub" }
-];
 
 export async function generateStaticParams() {
   return COMPETITORS.map((c) => ({
@@ -52,7 +44,7 @@ export default async function AlternativePage({ params }: { params: Promise<{ sl
       <main className="flex-1 flex flex-col items-center justify-center p-6 text-center">
         <div className="max-w-2xl bg-muted/40 border border-border backdrop-blur-xl rounded-3xl p-8 sm:p-12 shadow-2xl">
           <div className="text-xs font-bold tracking-widest uppercase text-destructive mb-4">
-            Don't Use {competitor}
+            Don&apos;t Use {competitor}
           </div>
           <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-6">
             The #1 Free Alternative to <span className="text-primary italic">{competitor}</span>
