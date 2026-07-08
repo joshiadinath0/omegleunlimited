@@ -78,6 +78,24 @@ export default function Home() {
     );
   };
 
+  const handleQuickStart = (presetGender: string, presetInterest: string | null) => {
+    if (confirm("You must be 18+ to use this feature. Continue?")) {
+      setAgeConfirmed(true);
+      setIsConnecting(true);
+      
+      const newInterests = presetInterest ? [presetInterest] : [];
+      
+      localStorage.setItem("ou_nickname", "Anonymous");
+      localStorage.setItem("ou_interests", JSON.stringify(newInterests));
+      localStorage.setItem("ou_gender", presetGender);
+      localStorage.setItem("ou_country", "All Countries");
+
+      setTimeout(() => {
+        router.push("/chat");
+      }, 800);
+    }
+  };
+
   const handleStart = (e: React.FormEvent) => {
     e.preventDefault();
     if (!ageConfirmed) {
@@ -251,6 +269,39 @@ export default function Home() {
             </button>
           </form>
 
+          {/* Quick Connect Actions */}
+          <div className="mt-8 pt-6 border-t border-border">
+            <h3 className="text-xs font-bold tracking-widest uppercase text-muted-foreground mb-4 text-center">
+              Quick Connect
+            </h3>
+            <div className="flex flex-col gap-3">
+              <button 
+                type="button"
+                onClick={() => handleQuickStart("Female", null)}
+                className="w-full bg-pink-500/10 hover:bg-pink-500/20 border border-pink-500/30 text-pink-500 rounded-xl py-3 font-bold text-sm transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+              >
+                👧 Chat with Females (Free)
+              </button>
+              
+              <div className="grid grid-cols-2 gap-3">
+                <button 
+                  type="button"
+                  onClick={() => handleQuickStart("Any", "College")}
+                  className="w-full bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/30 text-blue-500 rounded-xl py-3 font-bold text-sm transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+                >
+                  🎓 College Only
+                </button>
+                <button 
+                  type="button"
+                  onClick={() => handleQuickStart("Any", null)}
+                  className="w-full bg-destructive/10 hover:bg-destructive/20 border border-destructive/30 text-destructive rounded-xl py-3 font-bold text-sm transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+                >
+                  🔞 18+ Unmoderated
+                </button>
+              </div>
+            </div>
+          </div>
+
           <p className="text-center text-xs text-muted-foreground mt-6">
             By continuing you agree to our <Link href="/terms" className="underline hover:text-foreground">Terms</Link> & <Link href="/privacy" className="underline hover:text-foreground">Privacy Policy</Link>.<br />
             We do not store your personal data.
@@ -326,16 +377,49 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="py-8 text-center border-t border-border bg-background">
-        <div className="flex justify-center gap-6 mb-4 text-sm">
-          <Link href="/about" className="text-muted-foreground hover:text-foreground transition-colors">About</Link>
-          <Link href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">Privacy</Link>
-          <Link href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">Terms</Link>
-          <Link href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</Link>
+      <footer className="py-12 border-t border-border bg-muted/10">
+        <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+          <div>
+            <h4 className="font-bold mb-4 text-foreground">Alternatives</h4>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="/alternative/ometv" className="text-muted-foreground hover:text-primary transition-colors">OmeTV Alternative</Link></li>
+              <li><Link href="/alternative/chatroulette" className="text-muted-foreground hover:text-primary transition-colors">Chatroulette Alternative</Link></li>
+              <li><Link href="/alternative/monkey" className="text-muted-foreground hover:text-primary transition-colors">Monkey App Alternative</Link></li>
+              <li><Link href="/alternative/emerald-chat" className="text-muted-foreground hover:text-primary transition-colors">Emerald Chat Alternative</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-bold mb-4 text-foreground">Chat Rooms</h4>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="/room/anime" className="text-muted-foreground hover:text-primary transition-colors">Anime Chat Room</Link></li>
+              <li><Link href="/room/gaming" className="text-muted-foreground hover:text-primary transition-colors">Gaming Chat Room</Link></li>
+              <li><Link href="/room/tiktok" className="text-muted-foreground hover:text-primary transition-colors">TikTok Chat Room</Link></li>
+              <li><Link href="/room/kpop" className="text-muted-foreground hover:text-primary transition-colors">K-Pop Chat Room</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-bold mb-4 text-foreground">Guides & Blog</h4>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="/blog/omegle-unban-guide" className="text-muted-foreground hover:text-primary transition-colors">Omegle Unban Guide</Link></li>
+              <li><Link href="/blog/is-omegle-coming-back" className="text-muted-foreground hover:text-primary transition-colors">Is Omegle Coming Back?</Link></li>
+              <li><Link href="/blog/how-to-be-safe-on-random-video-chat" className="text-muted-foreground hover:text-primary transition-colors">Online Safety Guide</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-bold mb-4 text-foreground">Legal</h4>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">About Us</Link></li>
+              <li><Link href="/privacy" className="text-muted-foreground hover:text-primary transition-colors">Privacy Policy</Link></li>
+              <li><Link href="/terms" className="text-muted-foreground hover:text-primary transition-colors">Terms of Service</Link></li>
+              <li><Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">Contact</Link></li>
+            </ul>
+          </div>
         </div>
-        <p className="text-xs text-muted-foreground/60">
-          © {new Date().getFullYear()} OmegleUnlimited.com
-        </p>
+        <div className="text-center pt-8 border-t border-border">
+          <p className="text-xs text-muted-foreground/60">
+            © {new Date().getFullYear()} OmegleUnlimited.com. All rights reserved.
+          </p>
+        </div>
       </footer>
     </div>
   );
