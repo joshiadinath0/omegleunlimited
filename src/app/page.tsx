@@ -169,7 +169,7 @@ export default function Home() {
           className="w-full max-w-lg bg-muted/40 border border-border backdrop-blur-xl rounded-3xl p-8 sm:p-10 shadow-2xl"
         >
           <div className="text-xs font-bold tracking-widest uppercase text-primary mb-4">
-            Free & Unlimited
+            The Ultimate Omegle Alternative
           </div>
           <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-3">
             Talk to <span className="text-primary italic">strangers</span> with no limits
