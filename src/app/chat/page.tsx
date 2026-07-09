@@ -8,14 +8,14 @@ import { X, SkipForward, Send, Flag, Camera, Mic, CameraOff, MicOff } from "luci
 import Link from "next/link";
 import AdBanner from "@/components/AdBanner";
 
-// Pool of 30 safe, viral/popular YouTube videos
+// YouTube IDs of realistic fake webcams
 const VIDEOS = [
-  'dQw4w9WgXcQ', 'jNQXAC9IVRw', 'kffacxfA7G4', 'JGwWNGJdvx8', 'ru0K8uYEZWw',
-  'djV11Xbc914', 'hT_nvWreIhg', 'OPf0YbXqDm0', 'pRpeEdMmmQ0', 'nfWlot6h_JM',
-  'CevxZvSJLk8', '9bZkp7q19f0', 'KQ6zr6kCPj8', 'Y2NkuMmAEm0', '60ItHLz5WEA',
-  'DyDfgMOUjCI', '09R8_2nJtjg', 'xpVfcZ0ZcFM', 'SlPhMPnQ58k', 'e-ORhEE9VVg',
-  'RgKAFK5djSk', 'PT2_F-1esPk', 'ktvTqknDobU', 'M7lc1UVf-VE', 'IcrbM1l_BoI',
-  'u9Dg-g7t2l4', '5qap5aO4i9A', 'jfKfPfyJRdk', 'rY0WxgSXdEE', 'ZbZSe6N_BXs',
+  'mt2lU9KknCU', 'znXIxr4HSV8', 'r95xlWYdtJc',
+  'VdulVf7FNYI', 'cTiaOtP7v1o', 'KhUmC2bK1nA',
+  'a1-PV0yloqU', '-uegR1IYjcc', 'IyM6Hno0ugg',
+  'tIysNnnkWwM', 'MEm-3Uhrf4k', 'OrVC3bBz4Fg',
+  'U11GW9kgo-g', 'wuFtsVIcUdY', 'SdlIy53aVI8',
+  'EiS0zkPmHck'
 ];
 
 type Message = {
@@ -28,6 +28,7 @@ export default function ChatPage() {
   const router = useRouter();
   const [isConnecting, setIsConnecting] = useState(true);
   const [currentVideo, setCurrentVideo] = useState("");
+  const [isVideoReady, setIsVideoReady] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [chatCount, setChatCount] = useState(0);
@@ -37,6 +38,7 @@ export default function ChatPage() {
   // Local Camera State
   const localVideoRef = useRef<HTMLVideoElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const skipTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [isCamOn, setIsCamOn] = useState(true);
   const [isMicOn, setIsMicOn] = useState(true);
   const [stream, setStream] = useState<MediaStream | null>(null);
@@ -81,7 +83,10 @@ export default function ChatPage() {
 
   // Auto-scroll chat
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    const el = document.getElementById("chat-scroll-container");
+    if (el) {
+      el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
+    }
   }, [messages]);
 
   const toggleCamera = () => {
@@ -105,18 +110,28 @@ export default function ChatPage() {
   };
 
   const connectNext = () => {
+    if (skipTimeoutRef.current) clearTimeout(skipTimeoutRef.current);
+    
+    // Pick video IMMEDIATELY to keep browser's trusted click context for autoplay
+    let vid;
+    do { vid = VIDEOS[Math.floor(Math.random() * VIDEOS.length)]; } while (vid === currentVideo && VIDEOS.length > 1);
+    setCurrentVideo(vid);
+    
     setIsConnecting(true);
-    setCurrentVideo("");
+    setIsVideoReady(false);
     setMessages(prev => [...prev, { id: Date.now().toString(), sender: "system", text: "Looking for a new stranger..." }]);
 
-    const delay = 1500 + Math.random() * 2000;
-    
+    // Wait exactly 2.5 seconds. This guarantees YouTube buffers completely in the background 
+    // and hides its pause/play button before we reveal it to the user.
+    const delay = 2500;
     setTimeout(() => {
-      let vid;
-      do { vid = VIDEOS[Math.floor(Math.random() * VIDEOS.length)]; } while (vid === currentVideo);
-      
-      setCurrentVideo(vid);
       setIsConnecting(false);
+      setIsVideoReady(true);
+
+      // Auto-skip after 12 seconds to look realistic
+      skipTimeoutRef.current = setTimeout(() => {
+        connectNext();
+      }, 12000);
       
       const newCount = chatCount + 1;
       setChatCount(newCount);
@@ -189,11 +204,11 @@ export default function ChatPage() {
         <div className="flex-1 relative bg-black flex flex-col">
           
           {/* YouTube iframe container */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none overflow-hidden bg-black">
             {currentVideo && (
               <iframe
-                src={`https://www.youtube.com/embed/${currentVideo}?autoplay=1&mute=0&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&start=${Math.floor(Math.random()*30)}`}
-                className="w-full h-full scale-110 object-cover"
+                src={`https://www.youtube.com/embed/${currentVideo}?autoplay=1&mute=1&playsinline=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
+                className={`w-full h-full scale-[1.3] object-cover pointer-events-none transition-opacity duration-500 ${isVideoReady && !isConnecting ? 'opacity-100' : 'opacity-0'}`}
                 allow="autoplay; fullscreen"
                 allowFullScreen
               />
@@ -289,7 +304,7 @@ export default function ChatPage() {
             </span>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-4 space-y-3 flex flex-col">
+          <div id="chat-scroll-container" className="flex-1 overflow-y-auto p-4 space-y-3 flex flex-col">
             {messages.map((msg) => (
               <div 
                 key={msg.id} 
