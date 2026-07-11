@@ -14,7 +14,7 @@ const VIDEOS = [
   'VdulVf7FNYI', 'cTiaOtP7v1o', 'KhUmC2bK1nA',
   'a1-PV0yloqU', '-uegR1IYjcc', 'IyM6Hno0ugg',
   'tIysNnnkWwM', 'MEm-3Uhrf4k', 'OrVC3bBz4Fg',
-  'U11GW9kgo-g', 'wuFtsVIcUdY', 'SdlIy53aVI8',
+  'U11GW9kgo-g', 'wuFtsVIcUdY',
   'EiS0zkPmHck'
 ];
 
@@ -121,9 +121,8 @@ export default function ChatPage() {
     setIsVideoReady(false);
     setMessages(prev => [...prev, { id: Date.now().toString(), sender: "system", text: "Looking for a new stranger..." }]);
 
-    // Wait exactly 2.5 seconds. This guarantees YouTube buffers completely in the background 
-    // and hides its pause/play button before we reveal it to the user.
-    const delay = 2500;
+    const delay = 1000 + Math.random() * 1500;
+    
     setTimeout(() => {
       setIsConnecting(false);
       setIsVideoReady(true);
@@ -203,14 +202,16 @@ export default function ChatPage() {
         {/* Video Area */}
         <div className="flex-1 relative bg-black flex flex-col">
           
-          {/* YouTube iframe container */}
+          {/* Native Video Container */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden bg-black">
             {currentVideo && (
-              <iframe
-                src={`https://www.youtube.com/embed/${currentVideo}?autoplay=1&mute=1&playsinline=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
-                className={`w-full h-full scale-[1.3] object-cover pointer-events-none transition-opacity duration-500 ${isVideoReady && !isConnecting ? 'opacity-100' : 'opacity-0'}`}
-                allow="autoplay; fullscreen"
-                allowFullScreen
+              <video
+                src={`/videos/${currentVideo}.mp4`}
+                autoPlay
+                muted
+                playsInline
+                loop
+                className={`w-full h-full object-cover transition-opacity duration-500 ${isVideoReady && !isConnecting ? 'opacity-100' : 'opacity-0'}`}
               />
             )}
           </div>

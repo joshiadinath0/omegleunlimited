@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     title: "OmegleUnlimited – Free Random Video Chat",
     description: "Free random video chat with no bans or limits. Meet new people instantly. The ultimate Omegle alternative.",
     url: "https://omegleunlimited.com",
-    siteName: "OmegleUnlimited",
+    siteName: "OmegleUnlimited - Omegle Alternative",
     locale: "en_US",
     type: "website",
   },
@@ -29,6 +29,15 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://omegleunlimited.com",
+  },
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon.ico', type: 'image/x-icon' },
+    ],
+    apple: [
+      { url: '/favicon.ico' },
+    ],
   },
 };
 
@@ -52,6 +61,19 @@ export default function RootLayout({
           data-cfasync="false" 
           async
         ></script>
+        {/* Google Site Name JSON-LD */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "OmegleUnlimited - Omegle Alternative",
+              "alternateName": ["OmegleUnlimited", "Omegle Unlimited"],
+              "url": "https://omegleunlimited.com/"
+            })
+          }}
+        />
       </head>
       <body className={`${inter.className} min-h-screen antialiased bg-background text-foreground flex flex-col`}>
         {children}
