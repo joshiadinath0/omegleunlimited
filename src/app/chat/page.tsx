@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, SkipForward, Send, Flag, Camera, Mic, CameraOff, MicOff } from "lucide-react";
 import Link from "next/link";
-import AdBanner from "@/components/AdBanner";
+
 
 // YouTube IDs of realistic fake webcams
 const VIDEOS = [
@@ -184,20 +184,11 @@ export default function ChatPage() {
         </button>
       </header>
 
-      {/* Top Banner Ad (Mobile + Desktop) */}
-      <div className="w-full min-h-[50px] bg-muted/20 border-b border-border flex items-center justify-center shrink-0 overflow-hidden">
-        <AdBanner dataAdSlot="5181155973" dataAdFormat="auto" dataFullWidthResponsive={true} className="w-full h-full" />
-      </div>
 
       {/* Main Layout */}
       <div className="flex-1 flex flex-col md:flex-row overflow-hidden relative">
         
-        {/* Ad: Left Vertical (Desktop) */}
-        <div className="hidden lg:flex w-[160px] border-r border-border bg-muted/10 items-center justify-center overflow-hidden">
-          <div className="w-full h-full min-h-[600px] flex items-center justify-center">
-            <AdBanner dataAdSlot="1841475529" dataAdFormat="auto" dataFullWidthResponsive={true} className="w-full h-full" />
-          </div>
-        </div>
+
 
         {/* Video Area */}
         <div className="flex-1 relative bg-black flex flex-col">
@@ -230,10 +221,7 @@ export default function ChatPage() {
                   {filterCountry && filterCountry !== "All Countries" ? ` from ${filterCountry}` : ""} 
                   {" "}with similar interests...
                 </p>
-                {/* Interstitial Ad */}
-                <div className="w-[300px] h-[250px] flex items-center justify-center shadow-xl overflow-hidden bg-background/50 rounded-lg">
-                  <AdBanner dataAdSlot="5181155973" dataAdFormat="auto" dataFullWidthResponsive={true} className="w-full h-full" />
-                </div>
+
               </motion.div>
             )}
           </AnimatePresence>
@@ -323,10 +311,7 @@ export default function ChatPage() {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Small Feed Ad */}
-          <div className="p-2 border-t border-border bg-muted/5 flex items-center justify-center overflow-hidden min-h-[60px]">
-            <AdBanner dataAdSlot="5181155973" dataAdFormat="auto" dataFullWidthResponsive={true} className="w-full h-full" />
-          </div>
+
 
           {/* Chat Input */}
           <form onSubmit={handleSend} className="p-3 border-t border-border bg-muted/10 flex gap-2">
@@ -348,10 +333,7 @@ export default function ChatPage() {
             </button>
           </form>
 
-          {/* Ad: Bottom Right */}
-          <div className="min-h-[90px] border-t border-border bg-muted/10 flex items-center justify-center shrink-0 overflow-hidden">
-            <AdBanner dataAdSlot="5181155973" dataAdFormat="auto" dataFullWidthResponsive={true} className="w-full h-full" />
-          </div>
+
         </div>
 
       </div>
